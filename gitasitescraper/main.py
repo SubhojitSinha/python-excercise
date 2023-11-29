@@ -51,7 +51,7 @@ def collect_details(chapter_num, shloka_num, soup_data, only_beng=False):
         sanitized_list.append(item)
     return sanitized_list
 
-
+# The main funtion
 if __name__ == '__main__':
     only_beng = False
     chapters = {
