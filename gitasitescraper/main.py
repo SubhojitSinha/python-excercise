@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 
 base_url = "https://www.gitasupersite.iitk.ac.in"
 
-def write_csv(filename,fields,rows):
+
+def write_csv(filename, fields, rows):
     # writing to csv file
     with open(filename, 'a') as csvfile:
         # creating a csv writer object
@@ -17,17 +18,20 @@ def write_csv(filename,fields,rows):
         # writing the data rows
         csvwriter.writerows(rows)
 
+
 def collect_details(chapter_num, shloka_num, soup_data, only_beng=False):
+    for br in soup_data.find_all("br"):
+        br.replace_with("\n")
 
-    shloka_div  = soup_data.find('div', class_='views-field-body')
+    shloka_div = soup_data.find('div', class_='views-field-body')
     if not only_beng:
-        hindi_div   = soup_data.find('div', class_='views-field-field-httyn')
+        hindi_div = soup_data.find('div', class_='views-field-field-httyn')
         english_div = soup_data.find('div', class_='views-field-field-etpurohit')
-        slkaudio    = soup_data.find(id='slkaudio')
-        purohitAudio= soup_data.find(id='purohitAudio')
-        tejAudio    = soup_data.find(id='tejAudio')
+        slkaudio = soup_data.find(id='slkaudio')
+        purohitAudio = soup_data.find(id='purohitAudio')
+        tejAudio = soup_data.find(id='tejAudio')
 
-    data_list   =  [
+    data_list = [
         chapter_num,
         shloka_num,
         shloka_div.find_all('p')[0].text
@@ -36,20 +40,20 @@ def collect_details(chapter_num, shloka_num, soup_data, only_beng=False):
     if not only_beng:
         data_list.append(hindi_div.find_all('p')[0].text)
         data_list.append(english_div.find_all('p')[0].text)
-        data_list.append(base_url+slkaudio.find_all('source')[0].get("src")[1:])
-        data_list.append(base_url+purohitAudio.find_all('source')[0].get("src")[1:])
-        data_list.append(base_url+tejAudio.find_all('source')[0].get("src")[1:])
+        data_list.append(base_url + slkaudio.find_all('source')[0].get("src")[1:])
+        data_list.append(base_url + purohitAudio.find_all('source')[0].get("src")[1:])
+        data_list.append(base_url + tejAudio.find_all('source')[0].get("src")[1:])
 
-    sanitizesd_list = []
+    sanitized_list = []
     for item in data_list:
         if type(item) == str:
             item = re.sub(r'\n+', '\n', item).strip()
-        sanitizesd_list.append(item)
+        sanitized_list.append(item)
+    return sanitized_list
 
-    return sanitizesd_list
 
 if __name__ == '__main__':
-    only_beng = True
+    only_beng = False
     chapters = {
         "1": 47,
         "2": 72,
@@ -74,22 +78,23 @@ if __name__ == '__main__':
     if only_beng:
         csv_headers = ['chapter_num', 'shloka_num', 'shloka']
     else:
-        csv_headers = ['chapter_num', 'shloka_num', 'shloka', 'hindi', 'english', 'slkaudio', 'purohitAudio', 'tejAudio']
+        csv_headers = ['chapter_num', 'shloka_num', 'shloka', 'hindi', 'english', 'slkaudio', 'purohitAudio',
+                       'tejAudio']
 
     for chapter, shlokas in chapters.items():
         # print(f"Key : {chapter} and value : {shlokas}\n")
         main_dict = list()
-        for number in range(1,shlokas+1):
+        for number in range(1, shlokas + 1):
             print(f"Chapter {chapter}: Verse {number}")
             if only_beng:
                 url = f"{base_url}/srimad?language=bn&field_chapter_value={chapter}&field_nsutra_value={number}"
             else:
                 url = f"{base_url}/srimad?show_mool=1&show_purohit=1&show_tej=1&httyn=1&etpurohit=1&&language=dv&field_chapter_value={chapter}&field_nsutra_value={number}"
-            req       = requests.get(url)
-            soup      = BeautifulSoup(req.content,'html.parser')
+            req = requests.get(url)
+            soup = BeautifulSoup(req.content, 'html.parser')
             dict_data = collect_details(chapter, number, soup, only_beng)
             main_dict.append(dict_data)
 
-        write_csv(f"Chapter-{chapter}.csv",csv_headers,main_dict)
+        write_csv(f"Chapter-{chapter}.csv", csv_headers, main_dict)
 
     print("Completed execution")
