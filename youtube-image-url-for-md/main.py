@@ -1,12 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
-def write_to_file(file_name, text):
-    with open(file_name, 'a') as f:
-        f.write(str(text))
-        print("written to file")
-
 def generate_youtube_string_from_url():
+    """
+    Collects the input from the user, validates the URL, and retrieves the title,
+    thumbnail, and description of the YouTube video based on the provided URL.
+    """
     # Collect the input from user
     input_url = input("Enter YouTube URL: ")
 
