@@ -13,11 +13,13 @@ this_script_path = os.getcwd()
 
 # CHECKIG IF THE FILEPATH, PASSED IN THE ARGUMENT, IS VALID OR NOT
 if os.path.exists(log_file_path):
-    output_json_path = os.path.basename(log_file_path)+'.json'
+    # output_json_path = os.path.basename(log_file_path)+'.json'
+    output_json_path = log_file_path+'.json'
     print (os.path.basename(log_file_path))
 else:
     exit(f"Specified file not found -> {log_file_path}")
-
+# print(output_json_path)
+# raise Exception(output_json_path)
 # FUNCTION TO CHECK SPECIFIC PATTERNS
 def check_message(message):
     data_dict = dict({
