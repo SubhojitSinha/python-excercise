@@ -1,0 +1,184 @@
+[
+    {
+        "route_url": "/order/import/",
+        "defaults": "{'method_name': 'new_order'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "konnektive_request"
+    },
+    {
+        "route_url": "/upsale/import/",
+        "defaults": "{'method_name': 'new_upsell'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "konnektive_request"
+    },
+    {
+        "route_url": "/leads/import/",
+        "defaults": "{'method_name': 'new_prospect'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "konnektive_request"
+    },
+    {
+        "route_url": "/order/query/",
+        "defaults": "{'method_name': 'order_view'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "konnektive_request"
+    },
+    {
+        "route_url": "/api/v1/new_prospect/",
+        "defaults": "{'method_name': 'new_prospect'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/api/v1/new_order/",
+        "defaults": "{'method_name': 'new_order'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/api/v1/new_upsell/",
+        "defaults": "{'method_name': 'new_upsell'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/api/v1/order_view/",
+        "defaults": "{'method_name': 'order_view'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/api/v1/new_order_card_on_file/",
+        "defaults": "{'method_name': 'new_order_card_on_file'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/api/v1/new_order_with_prospect/",
+        "defaults": "{'method_name': 'new_order_with_prospect'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/api/v1/authorize_payment/",
+        "defaults": "{'method_name': 'authorize_payment'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sticky_request"
+    },
+    {
+        "route_url": "/admin/transact.php/",
+        "defaults": "{'method_name': 'transact'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "limelight_request"
+    },
+    {
+        "route_url": "/admin/membership.php/",
+        "defaults": "{'method_name': 'membership'}",
+        "methods": "GET",
+        "strict_slashes": "False",
+        "destination": "limelight_request"
+    },
+    {
+        "route_url": "/order/doAdd/",
+        "defaults": "{'method_name': 'new_prospect'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sublytics_request"
+    },
+    {
+        "route_url": "/order/doAddProcess/",
+        "defaults": "{'method_name': 'new_order'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sublytics_request"
+    },
+    {
+        "route_url": "/order/doAddProcessOrder/",
+        "defaults": "{'method_name': 'new_order_card_on_file'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sublytics_request"
+    },
+    {
+        "route_url": "/order/doAddAuth/",
+        "defaults": "{'method_name': 'authorize_payment'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sublytics_request"
+    },
+    {
+        "route_url": "/order/view/",
+        "defaults": "{'method_name': 'order_view'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "sublytics_request"
+    },
+    {
+        "route_url": "/api/admin/orders/<number>",
+        "defaults": "{'method_name': 'order_view'}",
+        "methods": "GET",
+        "strict_slashes": "False",
+        "destination": "twenty_nine_next_request"
+    },
+    {
+        "route_url": "/api/admin/orders/",
+        "defaults": "{'method_name': 'new_order'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "twenty_nine_next_request"
+    },
+    {
+        "route_url": "/orders/<number>",
+        "defaults": "{'method_name': 'order_view'}",
+        "methods": "GET",
+        "strict_slashes": "False",
+        "destination": "vrio_request"
+    },
+    {
+        "route_url": "/orders/<number>/capture",
+        "defaults": "{'method_name': 'new_order', 'method_type': 'capture'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "vrio_request"
+    },
+    {
+        "route_url": "/orders/<number>/complete",
+        "defaults": "{'method_name': 'new_order', 'method_type': 'complete'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "vrio_request"
+    },
+    {
+        "route_url": "/orders/<number>/process",
+        "defaults": "{'method_name': 'new_order', 'method_type': 'process'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "vrio_request"
+    },
+    {
+        "route_url": "/orders/<number>/authorize",
+        "defaults": "{'method_name': 'authorize_payment'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "vrio_request"
+    },
+    {
+        "route_url": "/orders/",
+        "defaults": "{'method_name': 'new_order'}",
+        "methods": "POST",
+        "strict_slashes": "False",
+        "destination": "vrio_request"
+    }
+]
